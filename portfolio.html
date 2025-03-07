@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-color: #0a192f;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00c9ff, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 15px #00c9ff, 0 0 30px #00c9ff;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff8c00, 0 0 40px #ff8c00;
+            }
+        }
+
+        /* Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            z-index: 1000;
+            transition: background 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 30px;
+        }
+
+        nav ul li a {
+            color: #00c9ff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ff8c00;
+            text-shadow: 0 0 15px #ff8c00;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: url('https://images.unsplash.com/photo-1561948958-3b39530de10b?fit=crop&w=500&h=500') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-size: cover;
+            background-position: center center;
+            color: white;
+            text-shadow: 0 0 20px black;
+            position: relative;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* About Section */
+        #about {
+            padding: 100px 20px;
+            background-color: #1f2a3f;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-shadow: 0 0 15px black;
+            position: relative;
+        }
+
+        #about h2 {
+            margin-bottom: 30px;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00c9ff;
+            text-transform: uppercase;
+        }
+
+        #about p {
+            max-width: 800px;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        #about img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid #ff8c00;
+            margin-bottom: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #about img:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 25px rgba(255, 140, 0, 0.8);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            justify-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill {
+            width: 250px; /* Increased size */
+            height: 250px; /* Increased size */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.8);
+        }
+
+        .skill img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .skill img:hover {
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.8);
+        }
+
+        #skills h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #00c9ff;
+            text-transform: uppercase;
+        }
+
+        .skill h3 {
+            font-size: 1.5rem;
+            color: #ff8c00;
+            margin-bottom: 15px;
+        }
+
+        .skill p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* Achievements Section */
+        #achievements {
+            padding: 100px 20px;
+            background-color: #1a2a3f;
+            color: white;
+            text-align: center;
+        }
+
+        #achievements h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #00c9ff;
+            text-transform: uppercase;
+        }
+
+        .achievements-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .achievement {
+            background: rgba(0, 201, 255, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            width: 300px; /* Increased size */
+            height: 300px; /* Increased size */
+            box-shadow: 0 4px 10px rgba(0, 201, 255, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .achievement img {
+            width: 250px;  /* Increased image size */
+            height: 250px; /* Increased image size */
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .achievement:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 201, 255, 0.8);
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 100px 20px;
+            background-color: #1a2a3f;
+            color: white;
+        }
+
+        #projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #00c9ff;
+            text-transform: uppercase;
+        }
+
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .project {
+            background: rgba(0, 201, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            width: 300px;
+            height: 400px; /* Increased size */
+            box-shadow: 0 4px 10px rgba(0, 201, 255, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            color: #ff8c00;
+        }
+
+        .project p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .project a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px;
+            background: linear-gradient(90deg, #00c9ff, #ff8c00);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .project a:hover {
+            background: linear-gradient(90deg, #ff8c00, #00c9ff);
+            box-shadow: 0 0 10px rgba(0, 201, 255, 0.8);
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 100px 20px;
+            background: url('https://images.unsplash.com/photo-1587613990867-6d000054cbfb') no-repeat center center/cover;
+            background-size: cover;
+            color: white;
+            position: relative;
+        }
+
+        #contact::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 140, 0, 0.3);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #contact input, #contact textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: none;
+            background: #1f2a3f;
+            color: white;
+            font-size: 1rem;
+            transition: 0.3s ease;
+        }
+
+        #contact input:focus, #contact textarea:focus {
+            background: #00c9ff;
+            outline: none;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #00c9ff, #ff8c00);
+            color: rgb(236, 191, 191);
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+            border-radius: 5px;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 140, 0, 1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px 0;
+            background: url('https://images.unsplash.com/photo-1593642532966-3b3f2b0e3cfe') no-repeat center center/cover;
+            background-size: cover;
+            color: white;
+        }
+
+        footer p {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div>
+            <h1>Welcome to My Portfolio</h1>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <img src="https://tse1.mm.bing.net/th?id=OIP.PqBYGErQeWQWhbA_VeUBDQHaHa&pid=Api&P=0&h=180" alt="Profile Picture">
+        <h2>Hi, I'm Swathi</h2>
+        <p>I'm currently pursuing a BTech in Computer Science from Sasi Institute of Technology and Engineering. I have a passion for web development, AI, and software engineering, and I'm constantly learning new technologies to expand my skills. Over the past few years, I've worked on a variety of projects that have allowed me to hone my programming and problem-solving abilities.</p>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+            <div class="skill">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.4dQkxLm-cAndV-9OfVjjQwHaE8&pid=Api&P=0&h=180" alt="Skill 1">
+            </div>
+            <div class="skill">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.dlN3XoOEiJxtzCtbKUBNAQHaE8&pid=Api&P=0&h=180" alt="Skill 2">
+            </div>
+            <div class="skill">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.DEt_TbohHcb6KhpldP6vMwHaEK&pid=Api&P=0&h=180" alt="Skill 3">
+            </div>
+            <div class="skill">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.xw3OB-cJDCSMNhKbjTCVCgHaES&pid=Api&P=0&h=180" alt="Skill 4">
+            </div>
+            <div class="skill">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.tjXP5XgyGImUb5vjE2V3XQHaHZ&pid=Api&P=0&h=180" alt="Skill 5">
+            </div>
+            <div class="skill">
+                <img src="https://tse2.mm.bing.net/th?id=OIP._Lm_T3scKhVEVFC54gcRxwHaE8&pid=Api&P=0&h=180" alt="Skill 6">
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2>Achievements</h2>
+        <div class="achievements-container">
+            <div class="achievement">
+                <img src="CodeChefBadge (2).png" alt="Achievement 1">
+                <h3>Achievement 1</h3>
+            </div>
+            <div class="achievement">
+                <img src="CodeChefBadge (3).png" alt="Achievement 2">
+                <h3>Achievement 2</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.cdqUIzE0IEXiIkex0exI7AHaEb&pid=Api&P=0&h=180" alt="Project 1">
+                <h3>Portfolio</h3>
+            </div>
+            <div class="project">
+                <img src="https://tse1.mm.bing.net/th?id=OIP.SAjb-_Hl_IwQj3wVT3WcSgHaE7&pid=Api&P=0&h=180" alt="Project 2">
+                <h3>Calculator</h3>
+            </div>
+            <div class="project">
+                <img src="https://tse3.mm.bing.net/th?id=OIP.G5aDymogMJl16R1bNoyv9wHaHa&pid=Api&P=0&h=180" alt="Project 3">
+                <h3>To do list</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <form>
+            <h2>Contact Me</h2>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Swathi. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
